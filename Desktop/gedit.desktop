@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Icon=gedit-icon
+Name=gedit text editor
+Exec=gedit
+Name=gedit

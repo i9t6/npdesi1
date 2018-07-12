@@ -1,0 +1,256 @@
+Current configuration : 5850 bytes
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+!
+hostname catalyst
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+!
+username admin privilege 15 password 7 $$$$$$$$$$$$$$$$$$$$$$$$
+!
+!
+aaa new-model
+!
+!
+!
+!
+!
+aaa session-id common
+switch 1 provision ws-c2960s-48fps-l
+!
+!
+ip domain-name company.com
+!
+!
+crypto pki trustpoint TP-self-signed-1536972544
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-1536972544
+ revocation-check none
+ rsakeypair TP-self-signed-1536972544
+!
+!
+crypto pki certificate chain TP-self-signed-1536972544
+ certificate self-signed 01
+  3082024B 308201B4 A0030201 02020101 300D0609 2A864886 F70D0101 04050030
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 31353336 39373235 3434301E 170D3933 30333031 30303033
+  30325A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D31 35333639
+  37323534 3430819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281
+  8100AD24 CAD61DFF A002D4E9 B98B24DC 8EE81A6B 653AD356 EDF5EF02 ED66B1C4
+  B7C022E8 46D78D9F 9DEB5FB2 540502F6 9C3AC425 D19C59A6 3CCD7A67 CE844211
+  6A2A8EAA 2A27C9E4 06F7F2F8 A92009AA B36A033E 34748AC7 7288808B BB07A4DD
+  25313F0D A2A969F7 78E4582D 38B4C98D DB1F7B89 2B54FF4E 74F551FC 988AB934
+  8C1B0203 010001A3 73307130 0F060355 1D130101 FF040530 030101FF 301E0603
+  551D1104 17301582 13414952 5F415357 312E6961 726C6177 2E636F6D 301F0603
+  551D2304 18301680 141FB91F 14BADD27 4982B7E2 B0D0B948 06EE2D76 22301D06
+  03551D0E 04160414 1FB91F14 BADD2749 82B7E2B0 D0B94806 EE2D7622 300D0609
+  2A864886 F70D0101 04050003 8181008F 6FE7E831 5845B836 3014D116 AF3888A9
+  ACC7421F 65608AF0 FCD57FFE C311C0B2 B9960B7E 464BF04E 830406B6 EC507D1F
+  C43FB187 C4C7A8D5 17A60C6A 32B04833 9516FD43 8692E475 2CA1C315 89638E4E
+  BA6ABB17 BF323C73 453DA097 1879FB53 49CA2F70 908DFD8A 72C95B87 D9BB887F
+  BF1F20DB A82FAB41 FF1A79B7 E3DFDD
+  quit
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+!
+!
+interface FastEthernet0
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/0/1
+ description LINK_TO_ROUTER_G0/1
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/2
+ switchport mode access
+!
+interface GigabitEthernet1/0/3
+ switchport mode access
+!
+interface GigabitEthernet1/0/4
+ switchport mode access
+!
+interface GigabitEthernet1/0/5
+ switchport mode access
+!
+interface GigabitEthernet1/0/6
+ switchport mode access
+!
+interface GigabitEthernet1/0/7
+ switchport mode access
+!
+interface GigabitEthernet1/0/8
+ switchport mode access
+!
+interface GigabitEthernet1/0/9
+ switchport mode access
+!
+interface GigabitEthernet1/0/10
+ switchport mode access
+!
+interface GigabitEthernet1/0/11
+ switchport mode access
+!
+interface GigabitEthernet1/0/12
+ switchport mode access
+!
+interface GigabitEthernet1/0/13
+ switchport mode access
+!
+interface GigabitEthernet1/0/14
+ switchport mode access
+!
+interface GigabitEthernet1/0/15
+ switchport mode access
+!
+interface GigabitEthernet1/0/16
+ switchport mode access
+!
+interface GigabitEthernet1/0/17
+ switchport mode access
+!
+interface GigabitEthernet1/0/18
+ switchport mode access
+!
+interface GigabitEthernet1/0/19
+ switchport mode access
+!
+interface GigabitEthernet1/0/20
+ switchport mode access
+!
+interface GigabitEthernet1/0/21
+ description AIRONET
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/22
+ switchport mode access
+!
+interface GigabitEthernet1/0/23
+ switchport mode access
+!
+interface GigabitEthernet1/0/24
+ switchport mode access
+!
+interface GigabitEthernet1/0/25
+ switchport mode access
+!
+interface GigabitEthernet1/0/26
+ switchport mode access
+!
+interface GigabitEthernet1/0/27
+ switchport mode access
+!
+interface GigabitEthernet1/0/28
+ switchport mode access
+!
+interface GigabitEthernet1/0/29
+ switchport mode access
+!
+interface GigabitEthernet1/0/30
+ switchport mode access
+!
+interface GigabitEthernet1/0/31
+ switchport mode access
+!
+interface GigabitEthernet1/0/32
+ switchport mode access
+!
+interface GigabitEthernet1/0/33
+ switchport mode access
+!
+interface GigabitEthernet1/0/34
+ switchport mode access
+!
+interface GigabitEthernet1/0/35
+ switchport mode access
+!
+interface GigabitEthernet1/0/36
+ switchport mode access
+!
+interface GigabitEthernet1/0/37
+ switchport mode access
+!
+interface GigabitEthernet1/0/38
+ switchport mode access
+!
+interface GigabitEthernet1/0/39
+ switchport mode access
+!
+interface GigabitEthernet1/0/40
+ switchport mode access
+!
+interface GigabitEthernet1/0/41
+ switchport mode access
+!
+interface GigabitEthernet1/0/42
+ switchport mode access
+!
+interface GigabitEthernet1/0/43
+ switchport mode access
+!
+interface GigabitEthernet1/0/44
+ switchport mode access
+!
+interface GigabitEthernet1/0/45
+ switchport mode access
+!
+interface GigabitEthernet1/0/46
+ switchport mode access
+!
+interface GigabitEthernet1/0/47
+ switchport mode access
+!
+interface GigabitEthernet1/0/48
+ switchport mode access
+!
+interface GigabitEthernet1/0/49
+!
+interface GigabitEthernet1/0/50
+!
+interface GigabitEthernet1/0/51
+!
+interface GigabitEthernet1/0/52
+!
+interface Vlan1
+ ip address 192.168.1.252 255.255.255.0
+!
+interface Vlan10
+ ip address 172.16.10.2 255.255.255.240
+ ip helper-address 172.16.10.1
+!
+ip http server
+ip http secure-server
+ip sla enable reaction-alerts
+banner motd ^CC
+***********************************************************************
+Private Network. Unauthorized Access Prohiboted. Log Off Now.
+***********************************************************************
+^C
+!
+line con 0
+ exec-timeout 120 0
+ logging synchronous
+line vty 0 4
+ exec-timeout 20 0
+ logging synchronous
+ transport input ssh
+line vty 5 15
+ exec-timeout 5 0
+ transport input ssh
+!
+end

@@ -1,0 +1,364 @@
+!Command: show running-config
+!Time: Mon Apr 27 21:03:00 2009
+
+version 6.0(2)N2(5)
+hostname N5K-1
+
+feature telnet
+cfs eth distribute
+feature interface-vlan
+feature lacp
+feature vpc
+feature lldp
+feature fex
+
+username admin password 5 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$  role network-admin
+ip domain-lookup
+policy-map type network-qos jumbo
+  class type network-qos class-default
+    mtu 9216
+    multicast-optimize
+system qos
+  service-policy type network-qos jumbo
+control-plane
+  service-policy input copp-system-policy-customized
+fex 100
+  pinning max-links 1
+  description "FEX0100"
+fex 101
+  pinning max-links 1
+  description "FEX0101"
+snmp-server user admin network-admin auth md5 0x32c925ee6a6ffc6d796e386c19eebe99
+ priv 0x32c925ee6a6ffc6d796e386c19eebe99 localizedkey
+
+vrf context management
+  ip route 0.0.0.0/0 10.0.0.1
+vlan 1
+spanning-tree port type edge bpduguard default
+spanning-tree port type network default
+vpc domain 1
+  role priority 10
+  peer-keepalive destination 10.0.10.246 source 10.0.10.245
+port-profile default max-ports 512
+
+
+interface Vlan1
+
+interface port-channel3
+  description LINK-TO-4500X-CORE-1
+  switchport mode trunk
+  speed 10000
+
+interface port-channel10
+  description vpc peer link
+  switchport mode trunk
+  spanning-tree port type network
+  speed 10000
+  vpc peer-link
+
+interface port-channel100
+  description DUAL-HOMED-NX2248-1
+  switchport mode fex-fabric
+  fex associate 100
+  vpc 100
+
+interface port-channel101
+  description DUAL-HOMED-NX2248-1
+  switchport mode fex-fabric
+  fex associate 101
+  vpc 101
+
+interface Ethernet1/1
+
+interface Ethernet1/2
+
+interface Ethernet1/3
+
+interface Ethernet1/4
+
+interface Ethernet1/5
+
+interface Ethernet1/6
+
+interface Ethernet1/7
+
+interface Ethernet1/8
+
+interface Ethernet1/9
+
+interface Ethernet1/10
+
+interface Ethernet1/11
+
+interface Ethernet1/12
+
+interface Ethernet1/13
+
+interface Ethernet1/14
+
+interface Ethernet1/15
+
+interface Ethernet1/16
+
+interface Ethernet1/17
+
+interface Ethernet1/18
+
+interface Ethernet1/19
+
+interface Ethernet1/20
+
+interface Ethernet1/21
+
+interface Ethernet1/22
+
+interface Ethernet1/23
+  switchport mode fex-fabric
+  fex associate 100
+  channel-group 100
+
+interface Ethernet1/24
+  switchport mode fex-fabric
+  fex associate 100
+  channel-group 100
+
+interface Ethernet1/25
+  switchport mode fex-fabric
+  fex associate 101
+  channel-group 101
+
+interface Ethernet1/26
+  switchport mode fex-fabric
+  fex associate 101
+  channel-group 101
+
+interface Ethernet1/27
+  description LINK-TO-4500X-CORE-1
+  switchport mode trunk
+  channel-group 3 mode passive
+
+interface Ethernet1/28
+  description LINK-TO-4500X-CORE-1
+  switchport mode trunk
+  channel-group 3 mode passive
+
+interface Ethernet1/29
+  description LINK-TO-4500X-CORE-2
+  switchport mode trunk
+  channel-group 3 mode passive
+
+interface Ethernet1/30
+  description LINK-TO-4500X-CORE-2
+  switchport mode trunk
+  channel-group 3 mode passive
+
+interface Ethernet1/31
+  description LINK-TO-NX-PEER
+  switchport mode trunk
+  channel-group 10 mode active
+
+interface Ethernet1/32
+  description LINK-TO-NX-PEER
+  switchport mode trunk
+  channel-group 10 mode active
+
+interface mgmt0
+  ip address 10.0.80.245/24
+
+interface Ethernet100/1/1
+
+interface Ethernet100/1/2
+
+interface Ethernet100/1/3
+
+interface Ethernet100/1/4
+
+interface Ethernet100/1/5
+
+interface Ethernet100/1/6
+
+interface Ethernet100/1/7
+
+interface Ethernet100/1/8
+
+interface Ethernet100/1/9
+
+interface Ethernet100/1/10
+
+interface Ethernet100/1/11
+
+interface Ethernet100/1/12
+
+interface Ethernet100/1/13
+
+interface Ethernet100/1/14
+
+interface Ethernet100/1/15
+
+interface Ethernet100/1/16
+
+interface Ethernet100/1/17
+
+interface Ethernet100/1/18
+
+interface Ethernet100/1/19
+
+interface Ethernet100/1/20
+
+interface Ethernet100/1/21
+
+interface Ethernet100/1/22
+
+interface Ethernet100/1/23
+
+interface Ethernet100/1/24
+
+interface Ethernet100/1/25
+
+interface Ethernet100/1/26
+
+interface Ethernet100/1/27
+
+interface Ethernet100/1/28
+
+interface Ethernet100/1/29
+
+interface Ethernet100/1/30
+
+interface Ethernet100/1/31
+
+interface Ethernet100/1/32
+
+interface Ethernet100/1/33
+
+interface Ethernet100/1/34
+
+interface Ethernet100/1/35
+
+interface Ethernet100/1/36
+
+interface Ethernet100/1/37
+
+interface Ethernet100/1/38
+
+interface Ethernet100/1/39
+
+interface Ethernet100/1/40
+
+interface Ethernet100/1/41
+
+interface Ethernet100/1/42
+
+interface Ethernet100/1/43
+
+interface Ethernet100/1/44
+
+interface Ethernet100/1/45
+
+interface Ethernet100/1/46
+
+interface Ethernet100/1/47
+
+interface Ethernet100/1/48
+
+interface Ethernet101/1/1
+
+interface Ethernet101/1/2
+
+interface Ethernet101/1/3
+
+interface Ethernet101/1/4
+
+interface Ethernet101/1/5
+
+interface Ethernet101/1/6
+
+interface Ethernet101/1/7
+
+interface Ethernet101/1/8
+
+interface Ethernet101/1/9
+
+interface Ethernet101/1/10
+
+interface Ethernet101/1/11
+
+interface Ethernet101/1/12
+
+interface Ethernet101/1/13
+
+interface Ethernet101/1/14
+
+interface Ethernet101/1/15
+
+interface Ethernet101/1/16
+
+interface Ethernet101/1/17
+
+interface Ethernet101/1/18
+
+interface Ethernet101/1/19
+
+interface Ethernet101/1/20
+
+interface Ethernet101/1/21
+
+interface Ethernet101/1/22
+
+interface Ethernet101/1/23
+
+interface Ethernet101/1/24
+
+interface Ethernet101/1/25
+
+interface Ethernet101/1/26
+
+interface Ethernet101/1/27
+
+interface Ethernet101/1/28
+
+interface Ethernet101/1/29
+
+interface Ethernet101/1/30
+
+interface Ethernet101/1/31
+
+interface Ethernet101/1/32
+
+interface Ethernet101/1/33
+
+interface Ethernet101/1/34
+
+interface Ethernet101/1/35
+
+interface Ethernet101/1/36
+
+interface Ethernet101/1/37
+
+interface Ethernet101/1/38
+
+interface Ethernet101/1/39
+
+interface Ethernet101/1/40
+
+interface Ethernet101/1/41
+
+interface Ethernet101/1/42
+
+interface Ethernet101/1/43
+
+interface Ethernet101/1/44
+
+interface Ethernet101/1/45
+
+interface Ethernet101/1/46
+
+interface Ethernet101/1/47
+
+interface Ethernet101/1/48
+line console
+  exec-timeout 800
+line vty
+boot kickstart bootflash:/n5000-uk9-kickstart.6.0.2.N2.5.bin
+boot system bootflash:/n5000-uk9.6.0.2.N2.5.bin
+no logging console

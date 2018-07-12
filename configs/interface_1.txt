@@ -1,0 +1,124 @@
+interface Vlan1
+  description Managment
+  no shutdown
+  no ip redirects
+  ip address 10.160.1.202/24
+
+interface port-channel10
+  description Controller1
+  switchport mode trunk
+  switchport trunk allowed vlan 5,15
+  speed 10000
+  flowcontrol receive on
+  flowcontrol send on
+  vpc 10
+
+interface port-channel20
+  description Controller2
+  switchport mode trunk
+  switchport trunk allowed vlan 5,15
+  speed 10000
+  flowcontrol receive on
+  flowcontrol send on
+  vpc 20
+
+interface port-channel50
+  description Trunk to 6800
+  switchport mode trunk
+  spanning-tree port type normal
+  vpc 50
+
+interface port-channel100
+  description VPC Peer-Link
+  switchport mode trunk
+  spanning-tree port type network
+  vpc peer-link
+
+interface port-channel101
+  switchport mode fex-fabric
+  fex associate 101
+
+interface Ethernet1/1
+  switchport mode fex-fabric
+  fex associate 101
+  channel-group 101
+
+interface Ethernet1/2
+  switchport mode fex-fabric
+  fex associate 101
+  channel-group 101
+
+interface Ethernet1/3
+  switchport mode fex-fabric
+  fex associate 101
+  channel-group 101
+
+interface Ethernet1/4
+  switchport mode fex-fabric
+  fex associate 101
+  channel-group 101
+
+interface Ethernet1/5
+
+interface Ethernet1/6
+
+interface Ethernet1/7
+  description Storage
+  switchport access vlan 15
+
+interface Ethernet1/8
+  description VM_Traffic
+  switchport mode trunk
+  switchport trunk allowed vlan 5,96,500
+
+interface Ethernet1/9
+  description Storage
+  switchport access vlan 15
+
+interface Ethernet1/10
+  description VM_Traffic
+  switchport mode trunk
+  switchport trunk allowed vlan 5,96,500
+
+interface Ethernet1/11
+  description Storage
+  switchport access vlan 15
+
+interface Ethernet1/12
+  description VM_Traffic
+  switchport mode trunk
+  switchport trunk allowed vlan 5,96,500
+
+interface Ethernet1/13
+  description Storage
+  switchport access vlan 15
+
+interface Ethernet1/14
+  description VM_Traffic
+  switchport mode trunk
+  switchport trunk allowed vlan 5,96,500
+
+interface Ethernet1/15
+  description Storage
+  switchport access vlan 15
+
+interface Ethernet1/16
+  description VM_Traffic
+  switchport mode trunk
+  switchport trunk allowed vlan 5,96,500
+
+interface Ethernet1/17
+  description Controller1
+  switchport mode trunk
+  switchport trunk allowed vlan 5,15
+  flowcontrol receive on
+  flowcontrol send on
+  channel-group 10 mode active
+
+interface Ethernet1/18
+  description Controller2
+  switchport mode trunk
+  switchport trunk allowed vlan 5,15
+  flowcontrol receive on
+  flowcontrol send on
+  channel-group 20 mode active
